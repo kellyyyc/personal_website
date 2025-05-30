@@ -2,27 +2,3 @@ body {
     width: 100%;
     height: 200vh;
 }
-
-#navbar {
-    background-color: #c0ceed;
-}
-
-.title {
-    font-size: 48px;
-    margin: 48px 72px;
-    font-weight: 500;
-}
-
-.scroll-shrink {
-    width: 100%;
-    display: block;
-    object-fit: cover;
-    bottom: 0;
-    position: relative;
-}
-
-#cat-gif {
-    position: absolute;
-    bottom: -150px;
-    right: 150px;
-}
