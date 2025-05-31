@@ -1,14 +1,18 @@
-import { useRef } from 'react';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Box from '@mui/material/Box';
+import { useTransform, motion } from "framer-motion";
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import gsap from 'gsap';
 import { useGSAP } from "@gsap/react";
 
 import Title from './Title';
+import '../App.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-function ScrollShrink() {
+function AboutSection({ scrollYProgress }) {
+  const scale = useTransform(scrollYProgress , [0, 1], [0.8, 1]);
+  const rotate = useTransform(scrollYProgress, [0, 1], [7, 0]);
+
   useGSAP(() => {
     gsap.fromTo(
       ".scroll-shrink",
@@ -21,7 +25,7 @@ function ScrollShrink() {
         borderRadius: "64px",
         scrollTrigger: {
           trigger: "#about-section",
-          start: "top top",
+          start: "0 top",
           end: "+=300",
           scrub: 0.8
         }
@@ -30,7 +34,7 @@ function ScrollShrink() {
   }, []);
 
   return (
-    <>
+    <Box id="about-section" className="section" component={motion.div} style={{scale, rotate}}>
       <Box className="scroll-shrink"
         sx={{
           width: "100%",
@@ -68,8 +72,8 @@ function ScrollShrink() {
           }}
         />
       </Box>
-    </>
+    </Box>
   )
 }
 
-export default ScrollShrink
+export default AboutSection

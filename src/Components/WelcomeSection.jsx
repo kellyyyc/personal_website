@@ -1,0 +1,35 @@
+import Box from '@mui/material/Box';
+import { useTransform, motion } from "framer-motion";
+
+import Navbar from './Navbar';
+import '../App.css';
+
+function WelcomeSection({ scrollYProgress }) {
+  const scale = useTransform(scrollYProgress , [0, 1], [1, 0.8]);
+  const rotate = useTransform(scrollYProgress , [0, 1], [0, -7]);
+
+  return (
+    <Box id="welcome-section" component={motion.div} style={{scale, rotate}} className="section" sx={{
+      height: "100vh",
+    }}>
+      <Navbar />
+      <Box sx={{
+        display: "flex",
+        justifyContent: "center",
+        width: "100%",
+        height: "calc(100vh - 48px)",
+        backgroundColor: "#aae3ac"
+      }}>
+        
+        <Box sx={{
+          alignContent: "center",
+          fontSize: "48px"
+        }}>
+          Welcome
+        </Box>
+      </Box>
+    </Box>
+  )
+}
+
+export default WelcomeSection
