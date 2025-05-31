@@ -31,7 +31,7 @@ function ScrollShrink() {
     <Box className="scroll-shrink"
       sx={{
         width: "100%",
-        height: "calc(100vh - 216px)",
+        height: "calc(100vh - 168px)",
         backgroundColor: "#c0ceed",
         padding: "64px",
         display: "block",
