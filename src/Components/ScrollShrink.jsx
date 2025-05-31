@@ -36,7 +36,8 @@ function ScrollShrink() {
         display: "block",
         objectFit: "cover",
         bottom: 0,
-        position: "relative"
+        position: "relative",
+        marginBottom: "96px"
       }}
     >
       <Box
@@ -55,6 +56,8 @@ function ScrollShrink() {
           position: "absolute",
           bottom: "-150px",
           right: "150px",
+          pointerEvents: "none",
+          userSelect: "none"
         }}
       />
     </Box>
