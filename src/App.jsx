@@ -8,19 +8,20 @@ import './App.css';
 function App() {
   return (
     <>
-      <Navbar />
-      <Box className="page" sx={{
-        fontWeight: 500
-      }}>
+      {/* <Box id="welcome-section" className="section" /> */}
+      <Box id="about-section" className="section">
+        <Navbar />
         <Title>
           Home
         </Title>
         <ScrollShrink />
+      </Box>
+      <Box id="project-section" className="section" sx={{
+        height: "100vh"
+      }}>
         <Title>
           Projects
         </Title>
-
-    
       </Box>
     </>
   )

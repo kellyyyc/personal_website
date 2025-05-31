@@ -1,12 +1,13 @@
-import { useEffect } from 'react';
+import { useRef } from 'react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Box from '@mui/material/Box';
 import gsap from 'gsap';
+import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 function ScrollShrink() {
-  useEffect(() => {
+  useGSAP(() => {
     gsap.fromTo(
       ".scroll-shrink",
       { 
@@ -17,7 +18,7 @@ function ScrollShrink() {
         scale: 0.9,
         borderRadius: "64px",
         scrollTrigger: {
-          trigger: "#navbar",
+          trigger: "#about-section",
           start: "top top",
           end: "+=300",
           scrub: 0.8

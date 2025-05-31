@@ -12,6 +12,7 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
+    "@gsap/react": "^2.1.2",
     "@mui/material": "^7.1.0",
     "bootstrap": "^5.3.6",
     "gsap": "^3.13.0",
