@@ -4,6 +4,8 @@ import Box from '@mui/material/Box';
 import gsap from 'gsap';
 import { useGSAP } from "@gsap/react";
 
+import Title from './Title';
+
 gsap.registerPlugin(ScrollTrigger);
 
 function ScrollShrink() {
@@ -28,40 +30,45 @@ function ScrollShrink() {
   }, []);
 
   return (
-    <Box className="scroll-shrink"
-      sx={{
-        width: "100%",
-        height: "calc(100vh - 168px)",
-        backgroundColor: "#c0ceed",
-        padding: "64px",
-        display: "block",
-        objectFit: "cover",
-        bottom: 0,
-        position: "relative",
-        marginBottom: "96px"
-      }}
-    >
-      <Box
+    <>
+      <Box className="scroll-shrink"
         sx={{
-          fontSize: "32px",
-          width: "50%"
+          width: "100%",
+          height: "100vh",
+          backgroundColor: "#c0ceed",
+          display: "block",
+          objectFit: "cover",
+          bottom: 0,
+          position: "relative",
+          marginBottom: "96px"
         }}
       >
-        Hi, I'm a computer science major. Bleh Bleh Bleh Bleh Bleh
+        <Title>
+          About
+        </Title>
+        <Box
+          sx={{
+            padding: "64px",
+            fontSize: "32px",
+            width: "50%"
+          }}
+        >
+          Hi, I'm a computer science major. Bleh Bleh Bleh Bleh Bleh
+        </Box>
+        <Box
+          component="img"
+          id="cat-gif"
+          src="src/assets/cat.gif"
+          sx={{
+            position: "absolute",
+            bottom: "-150px",
+            right: "150px",
+            pointerEvents: "none",
+            userSelect: "none"
+          }}
+        />
       </Box>
-      <Box
-        component="img"
-        id="cat-gif"
-        src="src/assets/cat.gif"
-        sx={{
-          position: "absolute",
-          bottom: "-150px",
-          right: "150px",
-          pointerEvents: "none",
-          userSelect: "none"
-        }}
-      />
-    </Box>
+    </>
   )
 }
 

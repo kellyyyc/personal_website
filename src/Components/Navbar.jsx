@@ -7,7 +7,7 @@ function Navbar() {
       display: "flex",
       padding: "0 24px",
       alignContent: "center",
-      backgroundColor: "#c0ceed"
+      backgroundColor: "#f8f8f8"
     }}>
       <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">
