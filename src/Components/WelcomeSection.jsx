@@ -23,7 +23,8 @@ function WelcomeSection({ scrollYProgress }) {
         
         <Box sx={{
           alignContent: "center",
-          fontSize: "48px"
+          fontSize: "72px",
+          color: "#000000"
         }}>
           Welcome
         </Box>
