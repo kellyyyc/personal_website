@@ -123,7 +123,7 @@ function ProjectsSection() {
         Projects
       </Title>
       <Box id="projects-container" sx={{
-        padding: "48px 64px",
+        padding: "40px 64px",
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
