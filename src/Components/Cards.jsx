@@ -11,7 +11,7 @@ export function CardBlank() {
 
 export function Card0() {
   return (
-    <Card id="card-0" backgroundImage="url('src/assets/card0.jpg')" textColour="#000000"> 
+    <Card id="card-0" backgroundImage="url('src/assets/card0.jpg')"> 
       <Box sx={{ 
         fontSize: "16px"
         }}>
