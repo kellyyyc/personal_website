@@ -10,6 +10,19 @@ import ProjectsSection from './Components/ProjectsSection';
 import './App.css';
 
 function App() {
+  const aboutSection = useRef(null);
+  const projectsSection = useRef(null);
+
+  const scrollToSections = {
+    scrollToAboutSection: () => {
+      aboutSection.current.scrollIntoView();
+    },
+    scrollToProjectsSection: () => {
+      projectsSection.current.scrollIntoView();
+    },
+    scroll: null
+  }
+  
   useEffect(() => {
     const lenis = new Lenis();
     
@@ -19,6 +32,10 @@ function App() {
     }
     
     requestAnimationFrame(raf);
+
+    scrollToSections.scroll = (target) => {
+      lenis.scrollTo(target);
+    };
   }, [])
 
   const container = useRef();
@@ -34,11 +51,15 @@ function App() {
       <Box ref={container} sx={{
         height: "195vh"
       }}>
-        <WelcomeSection scrollYProgress={scrollYProgress} />
-        <AboutSection scrollYProgress={scrollYProgress} />
+        <WelcomeSection scrollYProgress={scrollYProgress} scrollToSections={scrollToSections}/>
+        <Box ref={aboutSection}>
+          <AboutSection scrollYProgress={scrollYProgress} />
+        </Box>
       </Box>
       <Spacer sx={{ height: "100px" }}/>
-      <ProjectsSection />
+      <Box ref={projectsSection}>
+        <ProjectsSection />
+      </Box>
     </>
   )
 }

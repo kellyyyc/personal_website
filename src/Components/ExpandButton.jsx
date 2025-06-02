@@ -5,7 +5,7 @@ import '../App.css';
 function ExpandButton({ onClick, ...props }) {
   return (
     <Box {...props}>
-      <Box id="expand-card-button" component="button" type="button" 
+      <Box id="expand-card-button" component="button" type="button" tabindex="-1"
         onClick={onClick}
         sx={{
           borderRadius: "50%",

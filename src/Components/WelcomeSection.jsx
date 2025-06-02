@@ -4,7 +4,7 @@ import { useTransform, motion } from "framer-motion";
 import Navbar from './Navbar';
 import '../App.css';
 
-function WelcomeSection({ scrollYProgress }) {
+function WelcomeSection({ scrollYProgress, scrollToSections }) {
   const scale = useTransform(scrollYProgress , [0, 1], [1, 0.8]);
   const rotate = useTransform(scrollYProgress , [0, 1], [0, -7]);
 
@@ -12,7 +12,7 @@ function WelcomeSection({ scrollYProgress }) {
     <Box id="welcome-section" component={motion.div} style={{scale, rotate}} className="section" sx={{
       height: "100vh",
     }}>
-      <Navbar />
+      <Navbar scrollToSections={scrollToSections} />
       <Box sx={{
         display: "flex",
         justifyContent: "center",

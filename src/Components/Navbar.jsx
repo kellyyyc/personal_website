@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box';
 
-function Navbar() {
+function Navbar({scrollToSections}) {
   return (
     <Box id="navbar" sx={{
       height:"48px",
@@ -17,15 +17,27 @@ function Navbar() {
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/">Home</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/">About</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/">Projects</a>
-              </li>
+              <Box component="li" className="nav-item" sx={{
+                "&:hover": {
+                  cursor: "pointer"
+                }
+              }}>
+                <a className="nav-link active">Home</a>
+              </Box>
+              <Box component="li" className="nav-item" sx={{
+                "&:hover": {
+                  cursor: "pointer"
+                }
+              }}>
+                <div className="nav-link active" onClick={() => {scrollToSections.scrollToAboutSection()}}>About</div>
+              </Box>
+              <Box component="li" className="nav-item" sx={{
+                "&:hover": {
+                  cursor: "pointer"
+                }
+              }}>
+                <span className="nav-link active" onClick={() => {scrollToSections.scrollToProjectsSection()}}>Projects</span>
+              </Box>
               <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 </a>
