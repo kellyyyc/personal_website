@@ -1,6 +1,26 @@
+import { useRef, useState } from 'react';
 import Box from '@mui/material/Box';
+import SpeedDial from '@mui/material/SpeedDial';
+import SpeedDialIcon from '@mui/material/SpeedDialIcon';
+import SpeedDialAction from '@mui/material/SpeedDialAction';
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 
 function Navbar({scrollToSections}) {
+  const [ menuLeftPos, setMenuLeftPos ] = useState(0);
+  const menuRef = useRef(null);
+  const handleOpen = (event) => {
+    const rect = menuRef.current.getBoundingClientRect();
+    setMenuLeftPos(rect.left);
+    setShow(true);
+  };
+
+  const [ show, setShow ] = useState(false);
+  const handleClose = () => {
+    setShow(false);
+  };
+
   return (
     <Box id="navbar" sx={{
       height:"48px",
@@ -46,6 +66,42 @@ function Navbar({scrollToSections}) {
                   <li><a className="dropdown-item" href="/webtrack-extension">WebTrack Extension</a></li>
                 </ul>
               </li>
+              <Box component="li" className="nav-item" sx={{
+                "&:hover": {
+                  cursor: "pointer"
+                }
+              }}>
+                <li className="nav-item dropdown">
+                <span className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">
+                  Dashboard
+                </span>
+                <ul className="dropdown-menu">
+                  <li><a className="dropdown-item" href="/stock-tracker">Stock tracker</a></li>
+                  <li><a className="dropdown-item" href="/webtrack-extension">WebTrack Extension</a></li>
+                </ul>
+              </li>
+              </Box>
+              {/* <li className="nav-item active">
+                  <Box component="div" className="nav-link active"
+                    ref={menuRef}
+                    onMouseOver={handleOpen}
+                    onMouseLeave={handleClose}
+                  >
+                    Dashboard
+                    {
+                      <Box sx={{
+                        position: "absolute",
+                        backgroundColor: "white",
+                        top: "48px",
+                        left: `${menuLeftPos - 24}px`,
+                      }}>
+                          <MenuItem onClick={handleClose}>Profile</MenuItem>
+                          <MenuItem onClick={handleClose}>My account</MenuItem>
+                          <MenuItem onClick={handleClose}>Logout</MenuItem>
+                      </Box>
+                    }
+                  </Box>
+              </li> */}
             </ul>
           </div>
         </div>
