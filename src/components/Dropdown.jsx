@@ -35,7 +35,7 @@ function Dropdown() {
           display: "none",
           position: "absolute",
           backgroundColor: "#ffffff",
-          minWidth: "184px",
+          minWidth: "200px",
           padding: "6px",
           fontSize: "15px",
           borderRadius: "8px",
