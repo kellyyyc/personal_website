@@ -1,66 +1,41 @@
 import { useEffect, useRef } from 'react';
-import Box from '@mui/material/Box';
 import Lenis from 'lenis';
-import { useScroll } from "framer-motion";
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
-import WelcomeSection from './Components/WelcomeSection';
-import AboutSection from './Components/AboutSection';
-import Spacer from './Components/Spacer';
-import ProjectsSection from './Components/ProjectsSection';
+import { LenisContext } from './context/LenisContext.jsx';
+import HomePage from './pages/HomePage.jsx';
+import StockTrackerPage from './pages/StockTrackerPage.jsx';
+import WebTrackExtensionPage from './pages/WebTrackExtensionPage.jsx';
 import './App.css';
 
 function App() {
-  const aboutSection = useRef(null);
-  const projectsSection = useRef(null);
+  const scrollRef = useRef(null);
 
-  const scrollToSections = {
-    scrollToAboutSection: () => {
-      aboutSection.current.scrollIntoView();
-    },
-    scrollToProjectsSection: () => {
-      projectsSection.current.scrollIntoView();
-    },
-    scroll: null
-  }
-  
   useEffect(() => {
     const lenis = new Lenis();
-    
+    scrollRef.current = lenis;
+
     function raf(time) {
       lenis.raf(time);
       requestAnimationFrame(raf);
     }
     
     requestAnimationFrame(raf);
-
-    scrollToSections.scroll = (target) => {
-      lenis.scrollTo(target);
-    };
   }, [])
 
-  const container = useRef();
-
-  const { scrollYProgress } = useScroll({
-    target: container,
-    offset: ["100px start", "end end"]
-
-  })
-
   return (
-    <>
-      <Box ref={container} sx={{
-        height: "195vh"
-      }}>
-        <WelcomeSection scrollYProgress={scrollYProgress} scrollToSections={scrollToSections}/>
-        <Box ref={aboutSection}>
-          <AboutSection scrollYProgress={scrollYProgress} />
-        </Box>
-      </Box>
-      <Spacer sx={{ height: "100px" }}/>
-      <Box ref={projectsSection}>
-        <ProjectsSection />
-      </Box>
-    </>
+    <LenisContext.Provider value={{ scrollTo: (target) => scrollRef.current?.scrollTo(target) }}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/projects">
+            <Route index element={<Navigate to="/" />} />
+            <Route path="stock-tracker" element={<StockTrackerPage />} />
+            <Route path="webtrack-extension" element={<WebTrackExtensionPage />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </LenisContext.Provider>
   )
 }
 
