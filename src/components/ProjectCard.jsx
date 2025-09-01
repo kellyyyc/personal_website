@@ -44,7 +44,7 @@ function ProjectCard({
       }}
       {...props}
     >
-      <Box sx={{ fontSize: "16px" }}>{title}</Box>
+      <Box sx={{ fontSize: "17px" }}>{title}</Box>
       <Box sx={{ fontSize: "28px" }}>{summary}</Box>
       {children}
       <ExpandButton
