@@ -10,16 +10,16 @@ import { LeftButton, RightButton } from "../Buttons";
 
 const PROJECTS = [
   {
-    title: "WebTrack Extension",
-    summary: "Don't lose track of your time.",
-    image: "/assets/google_extension_icon_card.png",
-    isInverted: true,
-  },
-  {
     title: "The Milk Project",
     summary: "Secure neonatal milk tracking system.",
     image: "/assets/milk_project_card.png",
     isInverted: false,
+  },
+  {
+    title: "WebTrack Extension",
+    summary: "Don't lose track of your time.",
+    image: "/assets/google_extension_icon_card.png",
+    isInverted: true,
   },
   {
     title: "Mobile Fitness App",

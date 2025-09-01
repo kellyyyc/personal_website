@@ -54,8 +54,8 @@ function AboutSection({ scrollYProgress }) {
       >
         <Title>About</Title>
         <Box sx={{ padding: "64px", fontSize: "32px", width: "50%" }}>
-          Hi, I'm Kelly and I am a computer science major. Welcome to my
-          portfolio!
+          Hi, I'm Kelly and I am a computer science major. <br />
+          Check out my portfolio below!
         </Box>
         <Box
           component="img"
