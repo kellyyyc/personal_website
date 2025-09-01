@@ -93,7 +93,6 @@ function ProjectsSection({ setModalContent, openModal }) {
     for (let i = 0; i < NUMBEROFCARDS; i++) {
       arr.push((i + index) % TOTAL);
     }
-    console.log(arr);
     setCardArray(arr);
   }, [index]);
 
