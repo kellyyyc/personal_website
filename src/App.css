@@ -1,9 +1,10 @@
 body {
-    width: 100%;
-    font-weight: 500;
-    background-color: #f2e2c9;
+  width: 100%;
+  font-weight: 500;
+  background-color: #f2e2c9;
+  color: #1d1d1d;
 }
 
 .section {
-    height: 100vh;
+  height: 100vh;
 }

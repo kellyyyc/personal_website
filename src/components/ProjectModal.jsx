@@ -1,23 +1,21 @@
-import Box from '@mui/material/Box';;
-import Modal from '@mui/material/Modal';
-import Fade from '@mui/material/Fade';
-import Backdrop from '@mui/material/Backdrop';
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import Fade from "@mui/material/Fade";
+import Backdrop from "@mui/material/Backdrop";
 
-import WebTrackExtensionModal from '../components/modals/WebTrackExtensionModal';
-import StockTrackerModal from './modals/StockTrackerModal';
-import DefaultModal from './modals/DefaultModal';
+import WebTrackExtensionModal from "./modals/WebTrackExtensionModal";
+import StockTrackerModal from "./modals/StockTrackerModal";
+import DefaultModal from "./modals/DefaultModal";
 
 function ProjectModal({ modalContent, open, handleClose }) {
   const renderModalContent = () => {
     switch (modalContent) {
-      case "webTrackExtension":
+      case "WebTrack Extension":
         return <WebTrackExtensionModal />;
-      case "stockTracker":
+      case "Stock Tracker":
         return <StockTrackerModal />;
-      case "defaultProject":
-        return <DefaultModal />;
       default:
-        return null;
+        return <DefaultModal />;
     }
   };
 
@@ -32,7 +30,7 @@ function ProjectModal({ modalContent, open, handleClose }) {
         slotProps={{
           backdrop: {
             timeout: 500,
-          }
+          },
         }}
       >
         <Fade in={open}>
@@ -47,7 +45,7 @@ function ProjectModal({ modalContent, open, handleClose }) {
               borderRadius: "24px",
               padding: "48px",
               backgroundColor: "white",
-              outline: "none"
+              outline: "none",
             }}
           >
             {renderModalContent()}
@@ -55,7 +53,7 @@ function ProjectModal({ modalContent, open, handleClose }) {
         </Fade>
       </Modal>
     </>
-  )
+  );
 }
 
-export default ProjectModal
+export default ProjectModal;

@@ -1,13 +1,39 @@
-import Box from '@mui/material/Box';
-import gsap from 'gsap';
+import Box from "@mui/material/Box";
+import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useEffect, useState } from 'react';
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useState } from "react";
 
-import Title from '../Title';
-import ProjectCard from '../ProjectCard';
-import LeftButton from '../buttons/LeftButton';
-import RightButton from '../buttons/RightButton';
+import Title from "../Title";
+import ProjectCard from "../ProjectCard";
+import { LeftButton, RightButton } from "../Buttons";
+
+const PROJECTS = [
+  {
+    title: "WebTrack Extension",
+    summary: "Don't lose track of your time.",
+    image: "/assets/google_extension_icon_card.png",
+    isInverted: true,
+  },
+  {
+    title: "The Milk Project",
+    summary: "Secure neonatal milk tracking system.",
+    image: "/assets/milk_project_card.png",
+    isInverted: false,
+  },
+  {
+    title: "Mobile Fitness App",
+    summary: "Log workouts, track progress.",
+    image: "/assets/mobile_health_app_card.png",
+    isInverted: false,
+  },
+  {
+    title: "Stock Tracker",
+    summary: "Get the items you want.",
+    image: "",
+    isInverted: true,
+  },
+];
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,7 +41,7 @@ function ProjectsSection({ setModalContent, openModal }) {
   useGSAP(() => {
     gsap.fromTo(
       "#projects-section",
-      { 
+      {
         scale: 0.9,
       },
       {
@@ -25,8 +51,8 @@ function ProjectsSection({ setModalContent, openModal }) {
           trigger: "#projects-section",
           start: "top 60%",
           end: "+=450",
-          scrub: 0.8
-        }
+          scrub: 0.8,
+        },
       }
     );
   }, []);
@@ -34,7 +60,7 @@ function ProjectsSection({ setModalContent, openModal }) {
   useGSAP(() => {
     gsap.fromTo(
       "#projects-title",
-      { 
+      {
         scale: 1,
       },
       {
@@ -44,149 +70,122 @@ function ProjectsSection({ setModalContent, openModal }) {
           trigger: "#projects-section",
           start: "top 15%",
           end: "top top",
-          scrub: 0.8
-        }
+          scrub: 0.8,
+        },
       }
     );
   }, []);
 
-  const loadCard = (idx) => {
-    let cardContent = {
-      name: "",
-      title: "",
-      summary: "",
-      image: ""
-    };
-    switch (idx) {
-      case -1:
-        return (
-          <ProjectCard key="card-blank" visibility="hidden" />
-        );
-      case 0:
-        cardContent.name = "webTrackExtension";
-        cardContent.title = "WebTrack Extension";
-        cardContent.summary = "Don't lose track of your time.";
-        cardContent.image = "url('src/assets/card0.jpg')";
-        return (
-          <ProjectCard key="card-0" cardContent={cardContent} setModalContent={setModalContent} openModal={openModal} />
-        );
-      case 1:
-        cardContent.name = "stockTracker";
-        cardContent.title = "Stock Tracker";
-        cardContent.summary = "Get the items you want.";
-        cardContent.image = "url('src/assets/card1.jpg')";
-        return (
-          <ProjectCard key="card-1" cardContent={cardContent} setModalContent={setModalContent} openModal={openModal} />
-        );
-      case 2:
-        cardContent.name = "defaultProject";
-        cardContent.title = "Slide 3";
-        cardContent.summary = "The Westerlund 2 Cluster";
-        cardContent.image = "url('src/assets/card2.jpg')";
-        return (
-          <ProjectCard key="card-2" cardContent={cardContent} setModalContent={setModalContent} openModal={openModal} />
-        );
-      case 3:
-        cardContent.name = "defaultProject";
-        cardContent.title = "Slide 4";
-        cardContent.summary = "The Monkey Head Nebula";
-        cardContent.image = "url('src/assets/card3.jpg')";
-        return (
-          <ProjectCard key="card-3" cardContent={cardContent} setModalContent={setModalContent} openModal={openModal} />
-        );
-      case 4:
-        cardContent.name = "defaultProject";
-        cardContent.title = "Slide 5";
-        cardContent.summary = "The Antennae Galaxies";
-        cardContent.image = "url('src/assets/card4.jpg')";
-        return (
-          <ProjectCard key="card-4" cardContent={cardContent} setModalContent={setModalContent} openModal={openModal} />
-        );
-      case 5:
-        cardContent.name = "defaultProject";
-        cardContent.title = "Slide 6";
-        cardContent.summary = "The Ring Nebula";
-        cardContent.image = "url('src/assets/card5.jpg')";
-        return (
-          <ProjectCard key="card-5" cardContent={cardContent} setModalContent={setModalContent} openModal={openModal} />
-        );
-      default:
-        return null;
-    }
-  };
+  const NUMBEROFCARDS = 6;
+  const TOTAL = PROJECTS.length;
 
-  const [ index, setIndex ] = useState(-1);
-  const [ cardArray, setCardArray ] = useState([-1, 0, 1, 2, 3, 4]);
-  const Cards = () => {
-    return cardArray.map(idx => loadCard(idx))
-  }
+  const [index, setIndex] = useState(-1);
+  const [cardArray, setCardArray] = useState(() => {
+    const arr = [];
+    for (let i = -1; i < NUMBEROFCARDS - 1; i++) {
+      arr.push(i % TOTAL);
+    }
+    return arr;
+  });
 
   useEffect(() => {
     const arr = [];
-    for (let i = 0; i < 6; ++i) {
-      arr.push((index + i) % 6);
+    for (let i = 0; i < NUMBEROFCARDS; i++) {
+      arr.push((i + index) % TOTAL);
     }
-
+    console.log(arr);
     setCardArray(arr);
   }, [index]);
 
   const goLeft = () => {
-    if (index == -1) {
+    if (index <= -1) {
       return;
     } else {
       setIndex(index - 1);
     }
-  }
+  };
 
   const goRight = () => {
     setIndex(index + 1);
-  }
+  };
 
   return (
-    <Box id="projects-section" className="section"
+    <Box
+      id="projects-section"
+      className="section"
       sx={{
         backgroundColor: "#f19b9a",
         width: "100%",
         height: "100vh",
         borderRadius: "64px",
-        overflow: "hidden"
+        overflow: "hidden",
       }}
     >
-      <Title id="projects-title">
-        Projects
-      </Title>
-      <Box id="projects-container"
+      <Title id="projects-title">Projects</Title>
+      <Box
+        id="projects-container"
         sx={{
           padding: "40px 64px",
           display: "flex",
           flexDirection: "row",
           alignItems: "center",
           justifyContent: "center",
-          gap: "24px"
+          gap: "24px",
         }}
       >
-        <Cards />
+        {cardArray.map((idx, i) => {
+          if (idx === -1) {
+            return (
+              <ProjectCard
+                key={"card-blank"}
+                visibility="hidden"
+                title=""
+                summary=""
+                image=""
+                isInverted={false}
+                setModalContent={setModalContent}
+                openModal={openModal}
+              />
+            );
+          } else {
+            const project = PROJECTS[idx];
+            const backgroundImage = project.image
+              ? `url('${project.image}')`
+              : undefined;
+            return (
+              <ProjectCard
+                key={`card-${i}`}
+                title={project.title}
+                summary={project.summary}
+                image={backgroundImage}
+                isInverted={project.isInverted}
+                setModalContent={setModalContent}
+                openModal={openModal}
+              />
+            );
+          }
+        })}
       </Box>
-      <Box id="card-container-buttons"
+      <Box
+        id="card-container-buttons"
         sx={{
           position: "absolute",
           right: "4vw",
           bottom: "2.5vh",
-          display: "flex", 
-          gap: "0.8vw"
+          display: "flex",
+          gap: "0.8vw",
         }}
       >
-        <LeftButton 
-          className={index == -1 ? "btn btn-secondary disabled" : "btn btn-secondary"}
+        <LeftButton
+          className={
+            index == -1 ? "btn btn-secondary disabled" : "btn btn-secondary"
+          }
           onClick={goLeft}
         />
-        <RightButton 
-          className="btn btn-secondary"
-          onClick={goRight}
-        />
+        <RightButton className="btn btn-secondary" onClick={goRight} />
       </Box>
     </Box>
   );
 }
 
-export default ProjectsSection
+export default ProjectsSection;

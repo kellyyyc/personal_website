@@ -1,36 +1,41 @@
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
-import { useLenis } from '../context/LenisContext';
+import { useLenis } from "../context/LenisContext";
 
 function Dropdown() {
   const { scrollTo } = useLenis();
 
   return (
-    <Box component="li" className="nav-item dropdown-container"
+    <Box
+      component="li"
+      className="nav-item dropdown-container"
       sx={{
         position: "relative",
         display: "inline-block",
         "&:hover": {
           "& .dropdown-content": {
-            display: "block"
-          }
-        }
+            display: "block",
+          },
+        },
       }}
     >
-      <Box className="dropdown-button"
+      <Box
+        className="dropdown-button"
         sx={{
           margin: "4px 0",
           "&:hover": {
-            cursor: "default"
-          }
+            cursor: "default",
+          },
         }}
       >
         Projects
         <ArrowDropDownIcon fontSize="small" />
       </Box>
-      <Card variant="outlined" className="dropdown-content"
+      <Card
+        variant="outlined"
+        className="dropdown-content"
         sx={{
           display: "none",
           position: "absolute",
@@ -48,22 +53,27 @@ function Dropdown() {
             display: "block",
             "&:hover": {
               color: "#000000",
-              backgroundColor: "#f2f2f2"
-            }
-          }
+              backgroundColor: "#f2f2f2",
+            },
+          },
         }}
       >
-        <Box className="hoverable" 
-          onClick={() => scrollTo("#projects-section")} 
+        <Box
+          className="hoverable"
+          onClick={() => scrollTo("#projects-section")}
           sx={{ color: "#414141" }}
         >
           Overview
         </Box>
-        <a className="hoverable" href="/projects/webtrack-extension">WebTrack Extension</a>
-        <a className="hoverable" href="/projects/stock-tracker">Stock tracker</a>
+        <a className="hoverable" href="/projects/webtrack-extension">
+          WebTrack Extension
+        </a>
+        <a className="hoverable" href="/projects/stock-tracker">
+          Stock tracker
+        </a>
       </Card>
     </Box>
   );
 }
 
-export default Dropdown
+export default Dropdown;

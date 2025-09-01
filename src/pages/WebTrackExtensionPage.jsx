@@ -1,4 +1,4 @@
-import Box from '@mui/material/Box';
+import Box from "@mui/material/Box";
 
 function WebTrackExtensionPage() {
   return (
@@ -6,7 +6,7 @@ function WebTrackExtensionPage() {
       <Box
         sx={{
           fontSize: "48px",
-          padding: "48px 72px"
+          padding: "48px 72px",
         }}
       >
         WebTrack Extension Page
@@ -15,4 +15,4 @@ function WebTrackExtensionPage() {
   );
 }
 
-export default WebTrackExtensionPage
+export default WebTrackExtensionPage;

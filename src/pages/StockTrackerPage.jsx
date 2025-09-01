@@ -1,4 +1,4 @@
-import Box from '@mui/material/Box';
+import Box from "@mui/material/Box";
 
 function StockTrackerPage() {
   return (
@@ -6,7 +6,7 @@ function StockTrackerPage() {
       <Box
         sx={{
           fontSize: "48px",
-          padding: "48px 72px"
+          padding: "48px 72px",
         }}
       >
         Stock Tracker Page
@@ -15,4 +15,4 @@ function StockTrackerPage() {
   );
 }
 
-export default StockTrackerPage
+export default StockTrackerPage;
